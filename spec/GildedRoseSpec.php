@@ -33,63 +33,63 @@ describe('Gilded Rose', function () {
         });
         context('Brie Items', function () {
             it('updates Brie items before the sell date', function () {
-                $gr = new GildedRose([new Item('Aged Brie', 10, 5)]);
+                $gr = new GildedRose([new Item(GildedRose::AGED_BRIE, 10, 5)]);
                 $gr->nextDay();
                 expect($gr->getItem(0)->quality)->toBe(11);
                 expect($gr->getItem(0)->sellIn)->toBe(4);
             });
             it('updates Brie items before the sell date with maximum quality', function () {
-                $gr = new GildedRose([new Item('Aged Brie', 50, 5)]);
+                $gr = new GildedRose([new Item(GildedRose::AGED_BRIE, GildedRose::MAXIMUM_QUALITY, 5)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(50);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::MAXIMUM_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(4);
             });
             it('updates Brie items on the sell date', function () {
-                $gr = new GildedRose([new Item('Aged Brie', 10, 0)]);
+                $gr = new GildedRose([new Item(GildedRose::AGED_BRIE, 10, 0)]);
                 $gr->nextDay();
                 expect($gr->getItem(0)->quality)->toBe(12);
                 expect($gr->getItem(0)->sellIn)->toBe(-1);
             });
             it('updates Brie items on the sell date, near maximum quality', function () {
-                $gr = new GildedRose([new Item('Aged Brie', 49, 0)]);
+                $gr = new GildedRose([new Item(GildedRose::AGED_BRIE, 49, 0)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(50);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::MAXIMUM_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(-1);
             });
             it('updates Brie items on the sell date with maximum quality', function () {
-                $gr = new GildedRose([new Item('Aged Brie', 50, 0)]);
+                $gr = new GildedRose([new Item(GildedRose::AGED_BRIE, GildedRose::MAXIMUM_QUALITY, 0)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(50);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::MAXIMUM_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(-1);
             });
             it('updates Brie items after the sell date', function () {
-                $gr = new GildedRose([new Item('Aged Brie', 10, -10)]);
+                $gr = new GildedRose([new Item(GildedRose::AGED_BRIE, 10, -10)]);
                 $gr->nextDay();
                 expect($gr->getItem(0)->quality)->toBe(12);
                 expect($gr->getItem(0)->sellIn)->toBe(-11);
             });
             it('updates Brie items after the sell date with maximum quality', function () {
-                $gr = new GildedRose([new Item('Aged Brie', 50, -10)]);
+                $gr = new GildedRose([new Item(GildedRose::AGED_BRIE, GildedRose::MAXIMUM_QUALITY, -10)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(50);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::MAXIMUM_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(-11);
             });
         });
         context('Sulfuras Items', function () {
             it('updates Sulfuras items before the sell date', function () {
-                $gr = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 10, 5)]);
+                $gr = new GildedRose([new Item(GildedRose::SULFURAS, 10, 5)]);
                 $gr->nextDay();
                 expect($gr->getItem(0)->quality)->toBe(10);
                 expect($gr->getItem(0)->sellIn)->toBe(5);
             });
             it('updates Sulfuras items on the sell date', function () {
-                $gr = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 10, 5)]);
+                $gr = new GildedRose([new Item(GildedRose::SULFURAS, 10, 5)]);
                 $gr->nextDay();
                 expect($gr->getItem(0)->quality)->toBe(10);
                 expect($gr->getItem(0)->sellIn)->toBe(5);
             });
             it('updates Sulfuras items after the sell date', function () {
-                $gr = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 10, -1)]);
+                $gr = new GildedRose([new Item(GildedRose::SULFURAS, 10, -1)]);
                 $gr->nextDay();
                 expect($gr->getItem(0)->quality)->toBe(10);
                 expect($gr->getItem(0)->sellIn)->toBe(-1);
@@ -109,9 +109,9 @@ describe('Gilded Rose', function () {
                 expect($gr->getItem(0)->sellIn)->toBe(9);
             });
             it('updates Backstage pass items close to the sell data, at max quality', function () {
-                $gr = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 50, 10)]);
+                $gr = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', GildedRose::MAXIMUM_QUALITY, 10)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(50);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::MAXIMUM_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(9);
             });
             it('updates Backstage pass items very close to the sell date', function () {
@@ -121,9 +121,9 @@ describe('Gilded Rose', function () {
                 expect($gr->getItem(0)->sellIn)->toBe(4);
             });
             it('updates Backstage pass items very close to the sell date, at max quality', function () {
-                $gr = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 50, 5)]);
+                $gr = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', GildedRose::MAXIMUM_QUALITY, 5)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(50);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::MAXIMUM_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(4);
             });
             it('updates Backstage pass items with one day left to sell', function () {
@@ -133,9 +133,9 @@ describe('Gilded Rose', function () {
                 expect($gr->getItem(0)->sellIn)->toBe(0);
             });
             it('updates Backstage pass items with one day left to sell, at max quality', function () {
-                $gr = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 50, 1)]);
+                $gr = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', GildedRose::MAXIMUM_QUALITY, 1)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(50);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::MAXIMUM_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(0);
             });
             it('updates Backstage pass items on the sell date', function () {
