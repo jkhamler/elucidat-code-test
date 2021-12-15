@@ -1,7 +1,7 @@
 <?php
 
-use App\Item;
 use App\GildedRose;
+use App\Item;
 
 describe('Gilded Rose', function () {
     describe('next day', function () {
@@ -151,45 +151,43 @@ describe('Gilded Rose', function () {
                 expect($gr->getItem(0)->sellIn)->toBe(-2);
             });
         });
-        /*
         context("Conjured Items", function () {
             it('updates Conjured items before the sell date', function () {
                 $gr = new GildedRose([new Item('Conjured Mana Cake', 10, 10)]);
-                $gr->nextDay();
+                $gr->nextDay(true);
                 expect($gr->getItem(0)->quality)->toBe(8);
                 expect($gr->getItem(0)->sellIn)->toBe(9);
             });
             it('updates Conjured items at zero quality', function () {
                 $gr = new GildedRose([new Item('Conjured Mana Cake', 0, 10)]);
-                $gr->nextDay();
+                $gr->nextDay(true);
                 expect($gr->getItem(0)->quality)->toBe(0);
                 expect($gr->getItem(0)->sellIn)->toBe(9);
             });
             it('updates Conjured items on the sell date', function () {
                 $gr = new GildedRose([new Item('Conjured Mana Cake', 10, 0)]);
-                $gr->nextDay();
+                $gr->nextDay(true);
                 expect($gr->getItem(0)->quality)->toBe(6);
                 expect($gr->getItem(0)->sellIn)->toBe(-1);
             });
             it('updates Conjured items on the sell date at 0 quality', function () {
                 $gr = new GildedRose([new Item('Conjured Mana Cake', 0, 0)]);
-                $gr->nextDay();
+                $gr->nextDay(true);
                 expect($gr->getItem(0)->quality)->toBe(0);
                 expect($gr->getItem(0)->sellIn)->toBe(-1);
             });
             it('updates Conjured items after the sell date', function () {
                 $gr = new GildedRose([new Item('Conjured Mana Cake', 10, -10)]);
-                $gr->nextDay();
+                $gr->nextDay(true);
                 expect($gr->getItem(0)->quality)->toBe(6);
                 expect($gr->getItem(0)->sellIn)->toBe(-11);
             });
             it('updates Conjured items after the sell date at zero quality', function () {
                 $gr = new GildedRose([new Item('Conjured Mana Cake', 0, -10)]);
-                $gr->nextDay();
+                $gr->nextDay(true);
                 expect($gr->getItem(0)->quality)->toBe(0);
                 expect($gr->getItem(0)->sellIn)->toBe(-11);
             });
         });
-        */
     });
 });
