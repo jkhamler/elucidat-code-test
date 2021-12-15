@@ -79,19 +79,19 @@ describe('Gilded Rose', function () {
             it('updates Sulfuras items before the sell date', function () {
                 $gr = new GildedRose([new Item(GildedRose::SULFURAS, 10, 5)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(10);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::SULFURAS_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(5);
             });
             it('updates Sulfuras items on the sell date', function () {
                 $gr = new GildedRose([new Item(GildedRose::SULFURAS, 10, 5)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(10);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::SULFURAS_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(5);
             });
             it('updates Sulfuras items after the sell date', function () {
                 $gr = new GildedRose([new Item(GildedRose::SULFURAS, 10, -1)]);
                 $gr->nextDay();
-                expect($gr->getItem(0)->quality)->toBe(10);
+                expect($gr->getItem(0)->quality)->toBe(GildedRose::SULFURAS_QUALITY);
                 expect($gr->getItem(0)->sellIn)->toBe(-1);
             });
         });
