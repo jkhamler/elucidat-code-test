@@ -19,6 +19,9 @@ class GildedRose
         );
     }
 
+    /**
+     * Test
+     */
     public function nextDay()
     {
         foreach ($this->items as $item) {
