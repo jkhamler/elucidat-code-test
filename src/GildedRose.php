@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\ProductInterface;
+
 class GildedRose
 {
 
@@ -52,7 +54,9 @@ class GildedRose
         $degradationRate = $conjured ? self::CONJURED_DEGRADATION_RATE : self::REGULAR_DEGRADATION_RATE;
 
         foreach ($this->items as $item) {
-            $this->updateItem($item, $degradationRate);
+            if ($item instanceof ProductInterface) {
+                $this->updateItem($item, $degradationRate);
+            }
         }
     }
 
