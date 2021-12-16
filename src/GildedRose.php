@@ -19,6 +19,7 @@ class GildedRose
 
     private $items;
 
+
     /**
      * GildedRose constructor.
      * @param array $items
