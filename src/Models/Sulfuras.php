@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Legendary
+class Sulfuras
 {
 
 }
